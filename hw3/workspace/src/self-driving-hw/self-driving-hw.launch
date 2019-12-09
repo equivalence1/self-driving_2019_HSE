@@ -1,0 +1,13 @@
+<launch>
+    <!-- Spawn first tutrle, which is controlled by the user -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1"/>
+    <node pkg="turtlesim" type="turtle_teleop_key" name="teleop" output="screen"/>
+
+    <!-- 
+        Spawn the second turtle and start following 
+        Make a short delay to allow turtlesim start first
+    -->
+
+    <arg name="node_start_delay" default="0.3" />
+    <node pkg="self-driving-hw" type="self-driving-hw_node" name="turtle_follower" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+</launch>
